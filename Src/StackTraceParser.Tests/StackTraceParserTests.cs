@@ -20,9 +20,9 @@ namespace Tests
 {
     #region Imports
 
+    using NUnit.Framework;
     using System;
     using System.Linq;
-    using NUnit.Framework;
     using StackTraceParser = Elmah.StackTraceParser;
 
     #endregion
@@ -31,13 +31,15 @@ namespace Tests
     class StackTraceTestCase : TestCaseAttribute
     {
         public StackTraceTestCase(string stackTrace, int index, string frame) :
-            base(stackTrace, index, frame) {}
+            base(stackTrace, index, frame)
+        { }
 
         public StackTraceTestCase(string stackTrace, int index,
                  string frame,
                  string type, string method, string parameterList, string parameters,
                  string file, string line) :
-            base(stackTrace, index, frame, type, method, parameterList, parameters, file, line) {}
+            base(stackTrace, index, frame, type, method, parameterList, parameters, file, line)
+        { }
     }
 
     [TestFixture]
@@ -432,24 +434,24 @@ namespace Tests
             var actuals = StackTraceParser.Parse(stackTrace,
                  (f, t, m, pl, ps, fn, ln) => new
                  {
-                     Frame         = f,
-                     Type          = t,
-                     Method        = m,
+                     Frame = f,
+                     Type = t,
+                     Method = m,
                      ParameterList = pl,
-                     Parameters    = string.Join(", ", from e in ps select e.Key + " " + e.Value),
-                     File          = fn,
-                     Line          = ln,
+                     Parameters = string.Join(", ", from e in ps select e.Key + " " + e.Value),
+                     File = fn,
+                     Line = ln,
                  });
 
             var actual = actuals.ElementAt(index);
 
-            Assert.That(frame        , Is.EqualTo(actual.Frame)        , "Frame");
-            Assert.That(type         , Is.EqualTo(actual.Type)         , "Type");
-            Assert.That(method       , Is.EqualTo(actual.Method)       , "Method");
+            Assert.That(frame, Is.EqualTo(actual.Frame), "Frame");
+            Assert.That(type, Is.EqualTo(actual.Type), "Type");
+            Assert.That(method, Is.EqualTo(actual.Method), "Method");
             Assert.That(parameterList, Is.EqualTo(actual.ParameterList), "ParameterList");
-            Assert.That(parameters   , Is.EqualTo(actual.Parameters)   , "Parameters");
-            Assert.That(file         , Is.EqualTo(actual.File)         , "File");
-            Assert.That(line         , Is.EqualTo(actual.Line)         , "Line");
+            Assert.That(parameters, Is.EqualTo(actual.Parameters), "Parameters");
+            Assert.That(file, Is.EqualTo(actual.File), "File");
+            Assert.That(line, Is.EqualTo(actual.Line), "Line");
         }
 
         static void Parse(string stackTrace, int index, string frame)
