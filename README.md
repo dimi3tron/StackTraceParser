@@ -13,6 +13,10 @@ including the following components:
 It is available as a [NuGet *source* package][srcpkg] that directly embeds into
 a C# project.
 
+## This fork
+This fork does not change any functional details whatsoever. All it does is change the the project to compile to .netstandard. 
+The general structure has been reorganized and the unit tests were seperated out into a seperate project.
+
 ## Usage
 
 `StackTraceParser` has a single function called `Parse` that takes the source
